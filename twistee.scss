@@ -1,0 +1,98 @@
+// ###############################################################
+//
+// Twistee, v 1.0
+// 
+// Author: Eric Youngberg <eric@lmtlss.net>
+// Github: https://github.com/ericyoungberg/twistee
+// License: MIT
+// 
+// ###############################################################
+
+
+// Variables ----------------------------------------------
+
+$twistee-size: 80px;      // Square size of the logo
+$twistee-inner-size: 2;   // Size of inner portion of logo
+$twistee-border-size: 5;  // Size of border
+$twistee-color: #eaeaea;  // Color of the logo
+
+$animation-speed: .6s;    // How fast the outer logo spins
+
+
+// Setup --------------------------------------------------
+
+div {
+  position: relative;
+  margin: 0 auto;
+}
+
+
+// Styles -------------------------------------------------
+
+// Twistee wrapper
+.twistee {
+  width: $twistee-size;
+  height: $twistee-size;
+  
+  cursor: pointer;
+  
+  &:hover.twist-out {
+    .twistee-outer {
+      -ms-transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+
+      -webkit-transition: transform $animation-speed;
+      transition: transform $animation-speed;
+    }
+  }
+  
+  &:hover.twist-in {
+    .twistee-inner {
+      -ms-transform: translateY(-50%) rotateY(180deg);
+      -webkit-transform: translateY(-50%) rotateY(180deg);
+      transform: translateY(-50%) rotateY(180deg);
+
+      -webkit-transition: transform $animation-speed;
+      transition: transform $animation-speed;
+    }
+  }
+}
+
+// Outer part of the Twistee
+.twistee-outer {
+  width: $twistee-size - ($twistee-size / $twistee-border-size);
+  height: $twistee-size - ($twistee-size / $twistee-border-size);
+  
+  border: $twistee-size / ($twistee-border-size * 2) solid $twistee-color;
+  border-radius: $twistee-size;
+  
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+
+  -webkit-transition: transform $animation-speed;
+  transition: transform $animation-speed;
+}
+
+// Inner part of the Twistee
+.twistee-inner {
+  width: $twistee-size - ($twistee-size / $twistee-inner-size);
+  height: $twistee-size - ($twistee-size / $twistee-inner-size);
+
+  // Center position lulz
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%) rotateY(0deg);
+  -webkit-transform: translateY(-50%) rotateY(0deg);
+  transform: translateY(-50%) rotateY(0deg);
+            
+  border-radius: 5px;
+              
+  background: $twistee-color;
+                
+  -webkit-transition: transform $animation-speed;
+  transition: transform $animation-speed;
+}
